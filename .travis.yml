@@ -6,13 +6,12 @@ before_install:
  - sudo apt-get update
  - sudo apt-get install build-essential uuid-dev iasl git gcc-5 nasm
 script:
- - sed -i "s/TARGET *= DEBUG/TARGET = RELEASE/" Conf/target.txt
  - make -C BaseTools
  - bash -c ". edksetup.sh; build"
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
-  file: Build/OvmfX64/RELEASE_GCC5/FV/OVMF.fd
+  file: Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd
   skip_cleanup: true
   on:
     tags: true
